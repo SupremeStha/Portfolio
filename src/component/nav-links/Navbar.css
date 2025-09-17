@@ -73,7 +73,7 @@ header {
 }
 
 /* Fix overlap starting from 1340px */
-@media (max-width: 1340px) {
+@media (max-width: 1372px) {
     .portfolio-logo {
         left: 20px; /* Move logo closer to left edge */
     }
