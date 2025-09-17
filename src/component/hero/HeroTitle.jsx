@@ -6,7 +6,7 @@ const HeroTitle = () => {
     const [currentRole, setCurrentRole] = useState(0);
 
     const roles = [
-        "Full Stack Developer",
+        "Student",
         "UI/UX Designer",
         "Problem Solver",
         "Creative Thinker"

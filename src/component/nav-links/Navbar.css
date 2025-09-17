@@ -72,21 +72,21 @@ header {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Fix overlap starting from 1340px */
+
 @media (max-width: 1372px) {
     .portfolio-logo {
-        left: 20px; /* Move logo closer to left edge */
+        left: 60px; 
     }
     
     .navbar {
-        left: calc(50% + 50px); /* Offset navbar slightly to the right */
+        left: calc(50% + 50px); 
         transform: translateX(-50%);
     }
 }
 
 @media (max-width: 1200px) {
     .navbar {
-        left: 50%; /* Center navbar again */
+        left: 50%; 
         transform: translateX(-50%);
     }
     
@@ -105,7 +105,7 @@ header {
     }
     
     .portfolio-logo {
-        display: none; /* Hide logo on mobile */
+        display: none; 
     }
     
     .navlinks {
@@ -126,7 +126,7 @@ header {
     }
     
     .portfolio-logo {
-        display: block; /* Show logo again on very small screens */
+        display: block; 
         font-size: 1rem;
         top: 30px;
         left: 15px;
