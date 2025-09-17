@@ -1,4 +1,4 @@
-header{
+header {
     height: 80px;
 }
 
@@ -72,17 +72,42 @@ header{
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* Fix overlap starting from 1340px */
+@media (max-width: 1340px) {
+    .portfolio-logo {
+        left: 20px; /* Move logo closer to left edge */
+    }
+    
+    .navbar {
+        left: calc(50% + 50px); /* Offset navbar slightly to the right */
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 1200px) {
+    .navbar {
+        left: 50%; /* Center navbar again */
+        transform: translateX(-50%);
+    }
+    
+    .portfolio-logo {
+        left: 15px;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 10px;
         height: 70px;
         gap: 5px;
+        left: 50%;
+        transform: translateX(-50%);
     }
-
+    
     .portfolio-logo {
-        display: none;
+        display: none; /* Hide logo on mobile */
     }
-
+    
     .navlinks {
         margin: 0px 5px;
         padding: 8px 12px;
@@ -99,13 +124,14 @@ header{
         padding: 10px;
         width: 90%;
     }
-
+    
     .portfolio-logo {
+        display: block; /* Show logo again on very small screens */
         font-size: 1rem;
         top: 30px;
         left: 15px;
     }
-
+    
     .navlinks {
         margin: 5px;
         padding: 6px 10px;
