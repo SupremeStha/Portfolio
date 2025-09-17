@@ -1,4 +1,6 @@
 @font-face {
-    font-family: numans;
-    src: url(./Numans-Regular.ttf);
+    font-family: 'Numans';
+    src: url('/Numans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }

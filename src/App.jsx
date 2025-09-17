@@ -19,7 +19,6 @@ const App = () => {
       duration={400}>
       <div style={{ position: 'relative' }}>
         <Background />
-
         <Navbar />
         <HeroTitle />
         <AboutMe />
