@@ -1,0 +1,14 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    color: white;
+    background-color: white;
+    margin: 50px 100px;
+    font-family: numans;
+}
+

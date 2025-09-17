@@ -1,0 +1,112 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    padding: 20px;
+    width: fit-content;
+    max-width: 90%;
+    border-radius: 20px;
+    margin: 20px auto;
+    height: 65px;
+    background: #20222467;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    gap: 10px;
+}
+
+.portfolio-logo {
+    position: fixed;
+    top: 55px;
+    left: 200px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 1001;
+}
+
+.portfolio-logo:hover {
+    color: #adb5bd;
+    transform: scale(1.05);
+}
+
+.navlinks {
+    margin: 0px 10px;
+    color: #adb5bd;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    min-width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.navlinks:hover {
+    color: white;
+    border: 2px solid white;
+    transform: scale(1.05);
+}
+
+.navlinks.active {
+    color: white;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 10px;
+        height: 70px;
+        gap: 5px;
+    }
+
+    .portfolio-logo {
+        display: none;
+    }
+
+    .navlinks {
+        margin: 0px 5px;
+        padding: 8px 12px;
+        min-width: 60px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+        width: 90%;
+    }
+
+    .portfolio-logo {
+        font-size: 1rem;
+        top: 30px;
+        left: 15px;
+    }
+
+    .navlinks {
+        margin: 5px;
+        padding: 6px 10px;
+        min-width: 50px;
+        height: 30px;
+        font-size: 0.75rem;
+    }
+}
