@@ -7,7 +7,7 @@ import Education from './component/Education/Education'
 import Projects from './component/Projects/Projects'
 import Contact from './component/contactme/ContactMe'
 import Footer from './component/footer/Footer'
-import ClickSpark from './component/ClickSpark '
+import ClickSpark from './component/ClickSpark'
 
 const App = () => {
   return (

@@ -1,5 +1,6 @@
 header {
     height: 80px;
+    display: flex;
 }
 
 .navbar {
@@ -25,14 +26,14 @@ header {
 
 .portfolio-logo {
     position: fixed;
-    top: 55px;
-    left: 200px;
+    top: clamp(1.5rem, 5vh, 3.5rem);
+    left: 5%;
     color: white;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed, 0.3s) ease;
     white-space: nowrap;
     z-index: 1001;
 }
@@ -138,5 +139,26 @@ header {
         min-width: 50px;
         height: 30px;
         font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .portfolio-logo {
+        left: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-logo {
+        display: none; /* Hide on small screens to avoid clutter */
+    }
+}
+
+@media (max-width: 640px) {
+    .portfolio-logo {
+        display: block;
+        position: static; /* Remove from flow on very small screens */
+        margin-bottom: 1rem;
+        text-align: center;
     }
 }

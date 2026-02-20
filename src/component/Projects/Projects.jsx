@@ -57,9 +57,9 @@ const Projects = () => {
         },
         {
             id: 6,
-            title: "Smart Mental Health System (Ongoing) ",
+            title: "Smart Mental Health Support System",
             image: "./MHS.png",
-            alt: "Automobile Fuel Efficiency Analysis",
+            alt: "Mental Health System",
             technologies: ["NLP", "HTML/CSS", "Database"],
             links: {
                 github: "https://github.com/SupremeStha/Code-Crunch"
