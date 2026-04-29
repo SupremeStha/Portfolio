@@ -1,107 +1,81 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
-    const [activeSection, setActiveSection] = useState('home');
+const SECTIONS = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'education', label: 'Education' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' },
+];
 
-    const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            setActiveSection(sectionId);
-        }
+const Navbar = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const tickingRef = useRef(false);
+
+  const scrollToSection = useCallback((sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+    element.scrollIntoView({ behavior: 'smooth' });
+    setActiveSection(sectionId);
+  }, []);
+
+  // Throttled scroll-spy via rAF; avoids re-render storms.
+  useEffect(() => {
+    const update = () => {
+      tickingRef.current = false;
+      const scrollPosition = window.scrollY + 120;
+      let current = SECTIONS[0].id;
+      for (const { id } of SECTIONS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (scrollPosition >= el.offsetTop) current = id;
+      }
+      setActiveSection((prev) => (prev === current ? prev : current));
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const sections = ['home', 'about', 'education', 'projects', 'contact'];
-            const scrollPosition = window.scrollY + 100; // Offset for better detection
+    const onScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      requestAnimationFrame(update);
+    };
 
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const offsetTop = element.offsetTop;
-                    const offsetBottom = offsetTop + element.offsetHeight;
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-                        setActiveSection(section);
-                        break;
-                    }
-                }
-            }
-        };
+  return (
+    <header>
+      <a
+        href="#home"
+        className="portfolio-logo"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection('home');
+        }}
+      >
+        My Portfolio
+      </a>
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    return (
-        <header>
-            <a
-                href='#home'
-                className='portfolio-logo'
-                onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection('home');
-                }}
-            >
-                My Portfolio
-            </a>
-
-            <div className='navbar'>
-                <a
-                    href='#home'
-                    className={`navlinks ${activeSection === 'home' ? 'active' : ''}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection('home');
-                    }}
-                >
-                    Home
-                </a>
-                <a
-                    href='#about'
-                    className={`navlinks ${activeSection === 'about' ? 'active' : ''}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection('about');
-                    }}
-                >
-                    About
-                </a>
-                <a
-                    href='#education'
-                    className={`navlinks ${activeSection === 'education' ? 'active' : ''}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection('education');
-                    }}
-                >
-                    Education
-                </a>
-                <a
-                    href='#projects'
-                    className={`navlinks ${activeSection === 'projects' ? 'active' : ''}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection('projects');
-                    }}
-                >
-                    Projects
-                </a>
-                <a
-                    href='#contact'
-                    className={`navlinks ${activeSection === 'contact' ? 'active' : ''}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection('contact');
-                    }}
-                >
-                    Contact
-                </a>
-            </div>
-        </header>
-    );
+      <nav className="navbar" aria-label="Primary">
+        {SECTIONS.map(({ id, label }) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            className={`navlinks ${activeSection === id ? 'active' : ''}`}
+            aria-current={activeSection === id ? 'page' : undefined}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection(id);
+            }}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+    </header>
+  );
 };
 
 export default Navbar;
